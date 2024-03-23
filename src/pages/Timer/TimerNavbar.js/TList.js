@@ -16,7 +16,7 @@ const TList = ({show, setShow, list}) => {
             },
             margin: [20, 40, 20, 40],
             x: 32,
-             y: 32
+            y: 32
         });
     }
 
@@ -24,7 +24,7 @@ const TList = ({show, setShow, list}) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Your tasks list</Modal.Title>
-                <Button variant='light' onClick={downloadbtn}>Download</Button>
+                <Button variant='none' className='mx-5 btn-outline-primary' onClick={downloadbtn}>Download</Button>
             </Modal.Header>
             <Modal.Body id='tableList'>
                 <h4 className='text-center text-decoration-underline mb-4'>Focus Report</h4>

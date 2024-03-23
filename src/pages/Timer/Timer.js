@@ -31,13 +31,6 @@ const Timer = () => {
     const handleClearAll = () => {
         setTodo([])
     }
-    
-    // const handleCheckAllSubmit = () => {
-    //     setIsAllChecked(false)
-    //     const result = todo
-    //     console.log(todo)
-    //     setFinish([...finish, ...result])
-    // }
 
     return (
         <MyContext.Provider value={{ todo, setTodo, count, setCount, setBg }}>
@@ -46,8 +39,6 @@ const Timer = () => {
                 
                 <div className='container mx-auto timerApp' style={{ backgroundColor: bg }}>
                     <TimerUI 
-                        // isAllChecked={isAllChecked} 
-                        // setIsAllChecked={setIsAllChecked}
                         finish={finish}
                         setFinish={setFinish}   
                     />
@@ -65,14 +56,6 @@ const Timer = () => {
                     <hr className='w-75 mx-auto text-white' />
                     
                     <TaskUI />
-
-                    {/* if checked all */}
-                    {/* {isAllChecked ? 
-                        <div className='text-md-end mx-5 mt-3' id='task-btn'>
-                            <button className='btn btn-dark' type='submit' onClick={handleCheckAllSubmit}>Save All</button>
-                        </div>
-                    : null 
-                    } */}
 
                     {/* Add task Button */}
                     <button className='btn px-5 py-2 my-3 mx-auto text-white fw-bold' id='addBtn' onClick={handleAddTask}>

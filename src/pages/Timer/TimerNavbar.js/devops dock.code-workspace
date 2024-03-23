@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../.."
+		},
+		{
+			"path": "../../../../../../devops-dock-user-services"
+		},
+		{
+			"path": "../../../../../../devops-dock-timer-services"
+		}
+	],
+	"settings": {}
+}

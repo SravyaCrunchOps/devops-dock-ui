@@ -33,6 +33,16 @@ const TReport = ({ report, setReport }) => {
                         month: i.date.split('/')[0]
                     }
                 })
+                const r = month.map(i => {
+                    let total = 0
+                    ml.map(t => {
+                        if(t.month - 1 === i) {
+                            total += t.act
+                        }
+                    })
+                    return total 
+                })
+                console.log(r)
                 console.log(ml)
             })
     }, [])

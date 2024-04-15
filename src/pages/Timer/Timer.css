@@ -8,6 +8,7 @@
 }
 
 .timerApp {
+    text-align: center;
     width: 45% !important;
     border: 1px solid rgba(232, 235, 238, 0.3);
 }
@@ -118,6 +119,23 @@
     background-color: #0f4871;
     color: white;
   }
+
+
+  /* TContent */
+  .pomo-title {
+    color: tomato;
+    font-weight: 700;
+    border-bottom: 4px solid tomato;
+    width: fit-content;
+  }
+  .pomo-content {
+    font-size: 1.2rem;
+    text-align: justify;
+    font-family: 'Roboto', sans-serif;
+    word-spacing: 2px;
+    color: #0f4871;
+  }
+
 
 @media screen and (max-width: 767px) {
     .timerApp {

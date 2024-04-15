@@ -1,6 +1,7 @@
 import React, { useState, createContext } from 'react';
 import TaskUI from './Tasks_UI/TaskUI';
 import TNavbar from './TimerNavbar.js/TNavbar';
+import TimerContent from './TimerContent';
 import TimerUI from './Timer_UI/TimerUI';
 import Dropdown from 'react-bootstrap/Dropdown';
 import './Timer.css';
@@ -38,10 +39,7 @@ const Timer = () => {
                 <TNavbar />
                 
                 <div className='container mx-auto timerApp' style={{ backgroundColor: bg }}>
-                    <TimerUI 
-                        finish={finish}
-                        setFinish={setFinish}   
-                    />
+                    <TimerUI finish={finish} setFinish={setFinish} />
 
                     <div className='d-flex align-items-center flex-row justify-content-between mt-4 mx-auto w-75'>
                         <h4 className='text-white'>Tasks</h4>
@@ -58,7 +56,7 @@ const Timer = () => {
                     <TaskUI />
 
                     {/* Add task Button */}
-                    <button className='btn px-5 py-2 my-3 mx-auto text-white fw-bold' id='addBtn' onClick={handleAddTask}>
+                    <button className='container btn px-5 py-2 my-3 mx-auto text-white fw-bold' id='addBtn' onClick={handleAddTask}>
                         Add Tasks
                     </button>
 
@@ -70,6 +68,8 @@ const Timer = () => {
                     </div>
                 </div>
             </main>
+            <TimerContent />
+
         </MyContext.Provider>
     )
 }

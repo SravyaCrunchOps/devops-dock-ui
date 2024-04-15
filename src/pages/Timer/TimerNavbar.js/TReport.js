@@ -7,6 +7,7 @@ import { Bar } from 'react-chartjs-2';
 const TReport = ({ report, setReport }) => {
     const [labels, setLabels] = useState(null);
     const [tasks, setTasks] = useState(null);
+    const [mtask, setMTask] = useState(null);
 
     const handleClose = () => setReport(false);
     const user = sessionStorage.getItem('guser') ? 
@@ -25,6 +26,7 @@ const TReport = ({ report, setReport }) => {
 
                 const ml = result.data.userTasks.map(i => {
                     let total = 0
+                    // tasks => j
                     for(let j=0; j<i.tasks.length; j++) {
                         total = total + i.tasks[j].act*25
                     }
@@ -33,15 +35,17 @@ const TReport = ({ report, setReport }) => {
                         month: i.date.split('/')[0]
                     }
                 })
-                const r = month.map(i => {
+                const r = month.map((m, index) => {
                     let total = 0
                     ml.map(t => {
-                        if(t.month - 1 === i) {
+                        if(Number(t.month) === index+1) {
                             total += t.act
+                            console.log('t', total)
                         }
                     })
                     return total 
-                })
+                });
+                setMTask(r);
                 console.log(r)
                 console.log(ml)
             })
@@ -57,6 +61,17 @@ const TReport = ({ report, setReport }) => {
             }
         ]
     } 
+    const mdata ={
+        labels: month,
+        datasets: [
+            {
+                label: 'Monhtly Focus time',
+                data: mtask,
+                backgroundColor: 'rgba(255, 99, 132, 0.5)'
+            }
+        ]
+    }
+
     const options = {
         responsive: true,
         plugins: {
@@ -86,7 +101,7 @@ const TReport = ({ report, setReport }) => {
                         <Modal.Title>Report on your day's focus</Modal.Title>
                     </Modal.Header>
                     <div className='text-center my-4'>
-                        <button className='btn btn-outline-danger' onClick={showWeekly}>Weekly</button>
+                        <button className='btn btn-outline-danger me-3' onClick={showWeekly}>Weekly</button>
                         <button className='btn btn-outline-danger' onClick={showMonthly}>Monthly</button>
                     </div>
                     <Modal.Body id='weekly'>
@@ -96,7 +111,7 @@ const TReport = ({ report, setReport }) => {
 
                     <Modal.Body id='monthly'>
                         <h4  className='mb-3 text-center text-decoration-underline text-danger fw-bold'>Monthly Report</h4>
-                        <Bar options={options} data={data} className='mb-4'/>
+                        <Bar options={options} data={mdata} className='mb-4'/>
                     </Modal.Body>
                 </section>
                 

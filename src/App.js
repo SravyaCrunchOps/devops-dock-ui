@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Networking from './pages/Networking/Networking';
 import Timer from './pages/Timer/Timer';
+import Settings from './pages/Settings/Settings';
 import About from './pages/About/About';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
@@ -13,7 +14,7 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
-  const userItem = JSON.parse(sessionStorage.getItem('userInfo'));
+  let userItem = JSON.parse(sessionStorage.getItem('userInfo'));
   let usersession = userItem ? userItem : false;
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
       }
     }
     userFunction(usersession);
-  }, []);
+  },[]);
 
   return (
     <Router>
@@ -53,10 +54,8 @@ function App() {
           <Routes>
             <Route exact path="/" Component={Home} />
             <Route path="/networking" Component={Networking} />
-            {user ? 
-              <Route path="/:username/timer" Component={Timer} />
-              : <Route path='*' Component={ErrorPage} />
-            }
+            {user && <Route path="/:username/timer" Component={Timer} /> }
+            {user && <Route path="/:username/settings" Component={Settings} /> }
             <Route path="/about" Component={About} />
             <Route path="/login" Component={Login} />
             <Route path="/signup" Component={Signup} />

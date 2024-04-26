@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import '../Timer.css';
 
 const TaskList = ({ todo, setTodo, handleEdit }) => {
+    let tododata =  sessionStorage.getItem('todo') ? JSON.parse(sessionStorage.getItem('todo')) : null;
+    const [to, setTo] = useState(null);
+
+    useEffect(() => {
+        setTo(tododata)
+    },[todo])
+
     const handleChecked = (id) => {
-        const updatedCheck = todo.map(t => t.id === id ? { ...t, checked: !t.checked } : t)
+        const updatedCheck = to.map(t => t.id === id ? { ...t, checked: !t.checked } : t)
         setTodo(updatedCheck)
+        sessionStorage.setItem('todo', JSON.stringify(updatedCheck))
+        // setTo(updatedCheck)
+        console.log('checked', updatedCheck)
     }
 
     const handleDelete = (id) => {
@@ -16,7 +26,7 @@ const TaskList = ({ todo, setTodo, handleEdit }) => {
     }
     return (
         <ListGroup>
-            {todo ? todo.map(item => {
+            {to ? to.map(item => {
                 return (
                 <ListGroup.Item key={item.id} className='mb-2'>
                     <Dropdown id='dropdown-task'>

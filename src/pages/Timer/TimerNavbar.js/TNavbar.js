@@ -9,6 +9,7 @@ const TNavbar = () => {
     // context
     const { count } = useContext(MyContext);
     // modal state
+    // list modal
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
     const [list, setList] = useState(null);
@@ -33,7 +34,7 @@ const TNavbar = () => {
             }
         }
         getTasks()
-    }, [])
+    }, [count, user])
 
     return (
         <div className='mb-4'>

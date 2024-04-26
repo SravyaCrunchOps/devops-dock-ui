@@ -9,7 +9,10 @@ import './Timer.css';
 export const MyContext = createContext();
 
 const Timer = () => {
-    const [todo, setTodo] = useState([]);
+    const [todo, setTodo] = useState(() => {
+        const storedTasks = sessionStorage.getItem('todo');
+        return storedTasks ? JSON.parse(storedTasks) : [];
+    });
     const [count, setCount] = useState(0);
     // const [isAllChecked, setIsAllChecked] = useState(false);
     const [finish, setFinish] = useState([]);
@@ -27,10 +30,12 @@ const Timer = () => {
     const handleClearTask = () => {
         const newTodo = todo.filter(t => t.checked !== true)
         setTodo(newTodo)
+        sessionStorage.setItem('todo', JSON.stringify(newTodo));
     }
 
     const handleClearAll = () => {
         setTodo([])
+        sessionStorage.setItem('todo', []);
     }
 
     return (

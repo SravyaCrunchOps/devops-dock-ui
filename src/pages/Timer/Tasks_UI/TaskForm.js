@@ -15,8 +15,14 @@ const TaskForm = ({ form, setForm, isUpdate, setIsUpdate }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTodo([...todo, form]);
-        console.log(form)
+        let isTask = JSON.parse(sessionStorage.getItem('todo'));
+        if(isTask){
+            setTodo([...isTask, form]);  
+            sessionStorage.setItem('todo', JSON.stringify([...isTask, form]));
+        } else {
+            setTodo([...todo, form]);  
+            sessionStorage.setItem('todo', JSON.stringify([...todo, form]));
+        }
         setForm({
             id: todo.length + 1,
             title: '',
@@ -37,6 +43,7 @@ const TaskForm = ({ form, setForm, isUpdate, setIsUpdate }) => {
             return i
         })
         setTodo(newTodo)
+        sessionStorage.setItem('todo', JSON.stringify(newTodo));
         setIsUpdate(false)
         setForm({
             id: todo.length + 1,

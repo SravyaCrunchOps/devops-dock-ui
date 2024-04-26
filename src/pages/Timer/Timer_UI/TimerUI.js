@@ -12,8 +12,13 @@ export const MyTimerContext = createContext();
 
 const TimerUI = ({ finish, setFinish }) => {
     const { todo, setTodo } = useContext(MyContext);
+
+    let customTimer =  sessionStorage.getItem('customTimer') ? JSON.parse(sessionStorage.getItem('customTimer')) : null;
+
     const { setCount } = useContext(MyContext);
-    const [timer, setTimer] = useState(25 * 60);
+    const [timer, setTimer] = useState(() => {
+        return customTimer ? customTimer.timer*60 : 25 * 60
+    });
     const [timerName, setTimerName] = useState('timer');
     const [isActive, setIsActive] = useState(false);
     const [playSound1] = useSound(clickSound);
@@ -22,10 +27,12 @@ const TimerUI = ({ finish, setFinish }) => {
     const [unTask, setUnTask] = useState({});
 
     useEffect(() => {
+        // finds the first uncompleted task and setstate for uncomplete task
         const unCompleteTask = todo.find(t => !t.checked);
         setUnTask({ ...unCompleteTask })
+        console.log(unCompleteTask)
+        // check for completed tasks
         const newtodo = todo.filter(f => f.checked === true)
-        console.log('ne: ', newtodo)
         if(newtodo.length !== 0) {
             setCount(prev => prev + 1)
             setFinish(newtodo)
@@ -49,6 +56,7 @@ const TimerUI = ({ finish, setFinish }) => {
                 let newtodo;
                 // increase 'act' count if repeated
                 newtodo = { ...unTask, act: Number(Number(unTask.act) + 1) }
+                console.log(newtodo)
                 setUnTask({ ...newtodo })
                 // replace original todos with new "added act" using 'map' function
                 const tos = todo.map(item => {
@@ -57,6 +65,7 @@ const TimerUI = ({ finish, setFinish }) => {
                     }
                     return item
                 });
+                sessionStorage.setItem('todo', JSON.stringify(tos))
                 setTodo(tos)
                 handleStop();
             }
@@ -75,8 +84,7 @@ const TimerUI = ({ finish, setFinish }) => {
         const guser = JSON.parse(sessionStorage.getItem('guser'))
         const user = (guser ? guser : JSON.parse(sessionStorage.getItem('userInfo')))
         // task info
-        // const uniqueTaskList = removeDuplicateTasks(finish);
-        // console.log('unique: ', uniqueTaskList)
+
         if (finish.length !== 0) {
             axios.post("http://localhost:5002/user-tasks", {
                 date: JSON.parse(sessionStorage.getItem('date')),
@@ -86,11 +94,6 @@ const TimerUI = ({ finish, setFinish }) => {
             }).then(result => console.log(result.data))
         }
     }, [finish])
-
-    // function removeDuplicateTasks(fin) {
-    //     const uniqueTask = fin.filter((obj, index) => index === fin.findIndex(o => o.id === obj.id))     
-    //     return uniqueTask
-    // }
 
     const handleStart = () => {
         const stop = document.getElementById('stop');
@@ -102,13 +105,13 @@ const TimerUI = ({ finish, setFinish }) => {
     const handleStop = () => {
         playSound1();
         if (timer >= 15 * 60) {
-            setTimer(25 * 60)
+            setTimer(customTimer ? customTimer.timer*60 : 25 * 60)
             setIsActive(false)
-        } else if (timer >= 1 * 60 && timer <= 15 * 60) {
-            setTimer(15 * 60)
+        } else if (timer >= 5 * 60 && timer <= 15 * 60) {
+            setTimer(customTimer ? customTimer.long_break*60 : 15 * 60)
             setIsActive(false)
-        } else if (timer <= 1 * 60) {
-            setTimer(1 * 60)
+        } else if (timer <= 5 * 60) {
+            setTimer(customTimer ? customTimer.short_break*60 : 5 * 60)
             setIsActive(false)
         }
         const stop = document.getElementById('stop');

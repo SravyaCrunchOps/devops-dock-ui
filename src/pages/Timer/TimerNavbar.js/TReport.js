@@ -40,14 +40,11 @@ const TReport = ({ report, setReport }) => {
                     ml.map(t => {
                         if(Number(t.month) === index+1) {
                             total += t.act
-                            console.log('t', total)
                         }
                     })
                     return total 
                 });
                 setMTask(r);
-                console.log(r)
-                console.log(ml)
             })
     }, [])
     // const monthLabel = labels.map(i => i.split('/')[0])

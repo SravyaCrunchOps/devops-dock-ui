@@ -8,19 +8,21 @@ const TimerNav = () => {
     const { setBg } = useContext(MyContext)
     const { setTimer, setIsActive, setTimerName } = useContext(MyTimerContext);
 
+    let customTimer =  sessionStorage.getItem('customTimer') ? JSON.parse(sessionStorage.getItem('customTimer')) : null;
+
     const handleSelect = (eventKey) => {
         switch(eventKey) {
             case '1': 
-                displayFunction(25 * 60, '#b62525', false, 'timer')   
+                displayFunction(customTimer ? customTimer.timer*60 : 25 * 60, '#b62525', false, 'timer')   
                 break;
             case '2': 
-                displayFunction(1 * 60, '#643A6B', false, 'short') 
+                displayFunction(customTimer ? customTimer.short_break*60 : 5 * 60, '#643A6B', false, 'short') 
                 break;
             case '3':
-                displayFunction(15 * 60, '#005B41', false, 'long') 
+                displayFunction(customTimer ? customTimer.long_break*60 : 15 * 60, '#005B41', false, 'long') 
                 break;
             default: 
-                displayFunction(25 * 60, '#b62525', false, 'timer') 
+                displayFunction(customTimer ? customTimer.timer*60 : 25 * 60, '#b62525', false, 'timer') 
                 break;
         }
     }

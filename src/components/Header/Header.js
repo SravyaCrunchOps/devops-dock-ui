@@ -53,7 +53,11 @@ function Header({ user }) {
                   </button>
                   <ul className='dropdown-menu'>
                     <li className='dropdown-item mb-1' onClick={handlelogout}>Logout</li>
-                    <li className='dropdown-item mb-1'>Settings</li>
+                    <li className='dropdown-item mb-1'>
+                      <Link to={`/${user.displayName}/settings`} className="text-decoration-none text-black">
+                        Settings
+                      </Link>
+                    </li>
                   </ul>
                 </li> 
               </ul>

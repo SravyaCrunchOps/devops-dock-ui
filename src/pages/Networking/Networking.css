@@ -1,3 +1,12 @@
+.network.nav {
+  background-color: #f0f5f9;
+  text-align: center;
+}
+
+.network.nav .nav-item .nav-link {
+  color: black !important;
+}
+
 .cidr {
   font-family: 'Poppins', sans-serif;
 }
@@ -8,7 +17,7 @@
   word-spacing: 2px;
 }
 
-.cidr-title {
+.cidr-title, .cidr-subtitle, .title {
   font-family: 'Roboto', sans-serif;
   color: #27374D;
 }

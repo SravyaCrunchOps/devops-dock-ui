@@ -4,6 +4,8 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import Networking from './pages/Networking/Networking';
+import Ipv4 from './pages/Networking/IPv4/Ipv4';
+import Ipv6 from './pages/Networking/IPv6/Ipv6';
 import Timer from './pages/Timer/Timer';
 import Settings from './pages/Settings/Settings';
 import About from './pages/About/About';
@@ -53,7 +55,10 @@ function App() {
         <Header user={user} />
           <Routes>
             <Route exact path="/" Component={Home} />
-            <Route path="/networking" Component={Networking} />
+            <Route path="/networking" Component={Networking}>
+              <Route path='ipv4' Component={Ipv4} />
+              <Route path='ipv6' Component={Ipv6} />
+            </Route>
             {user && <Route path="/:username/timer" Component={Timer} /> }
             {user && <Route path="/:username/settings" Component={Settings} /> }
             <Route path="/about" Component={About} />

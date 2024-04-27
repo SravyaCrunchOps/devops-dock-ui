@@ -27,11 +27,23 @@ function Header({ user }) {
               <li className="nav-item me-lg-4 mb-1 mb-lg-0">
                 <Link className="nav-link" to="/">Home</Link>
               </li>
-              <li className="nav-item me-lg-4 mb-1 mb-lg-0">
-                <Link className="nav-link" to="/networking">Networking</Link>
+              <li className="nav-item me-lg-4 mb-1 mb-lg-0 dropdown">
+                <Link className="nav-link dropdown-toggle" to="/networking" role='button' data-bs-toggle='dropdown' aria-expanded='false' >
+                  Network Calculator
+                </Link>
+                <ul className='dropdown-menu'>
+                  <li><Link to='/networking/ipv4' className='dropdown-item'>IPv4</Link></li>
+                  <li><Link to='/networking/ipv6' className='dropdown-item'>IPv6</Link></li>
+                </ul>
               </li>
-              <li className="nav-item me-lg-4 mb-1 mb-lg-0">
-                <Link className="nav-link" to="/about">About</Link>
+              <li className="nav-item me-lg-4 mb-1 mb-lg-0 dropdown">
+                <Link className="nav-link" to="/converters" role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                  Converters
+                </Link>
+                <ul className='dropdown-menu'>
+                  <li><Link to='/converters/base64-encode' className='dropdown-item'>Base64-Encode</Link></li>
+                  <li><Link to='/converters/base64-decode' className='dropdown-item'>Base64-Decode</Link></li>
+                </ul>
               </li>
             </ul>
             {user ?

@@ -1,68 +1,40 @@
 import React, { useState } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import './Networking.css';
-import CIDRContent from './CIDRContent';
-import CIDRTable from './CIDRTable';
-import SidebarTOC from './SidebarTOC';
+
+
+const networkItems = [
+  { id: 1, name: 'IPv4', href: 'ipv4' },
+  { id: 2, name: 'IPv6', href: 'ipv6' },
+];
+
 
 function Networking() {
-  const [ipAddress, setIpAddress] = useState('');
-  const [apiResponse, setApiResponse] = useState(null);
-  const [error, setError] = useState('')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await fetch('http://localhost:5001/cidr/calculate-cidr', {
-        method: 'POST',
-        body: JSON.stringify({ cidr: ipAddress }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(res => res.json())
-      .then(data  => {
-        if(data.err) {
-          setError(data.err)
-          setApiResponse(null)
-        } else {
-          setApiResponse(data)
-          setError(null)
-          setIpAddress('')
-        }        
-      })
-  };
+  const [isActive, setIsActive] = useState(false);
+
+  const handleActiveState = (id) => {
+    setIsActive(id)
+  }
+
 
   return (
     <main className='container-fluid p-0 m-0 main-container'>
       <div className='container pt-5 cidr'>
-        <h1 className='text-center font-bolder mb-3 cidr-title'>CIDR Calculator</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='input-group mb-3'>
-            <input
-              value={ipAddress}
-              onChange={(e) => setIpAddress(e.target.value)}
-              type='text'
-              className='form-control border-dark-subtle focus-ring focus-ring-secondary'
-              placeholder='Enter CIDR'
-              aria-label="CIDR address"
-            />
-            <button className='btn bg-secondary text-light' type='submit'>Calculate</button>
-          </div>
-        </form>
-
-        {error && <p className="error">{error}</p>}
+        <ul className="network nav justify-content-evenly rounded rounded-5 mb-3">
+          {networkItems.map(item => {
+            <li className="nav-item" key={item.id}>
+              <Link className={isActive === item.id ? 'nav-link nav-active' : 'nav-link'} to={`/networking/${item.href}`} onClick={() => handleActiveState(item.id)}>
+                {item.name}
+              </Link>
+          </li>
+          })}
+        </ul>
         
-        <div className="output-box mb-5">
-          <CIDRTable apiResponse={apiResponse} />
-        </div>
-
-        <article>
-          <SidebarTOC />
-          <CIDRContent />
-        </article>
+        <Outlet />
       </div>
     </main>
   )
-};
-
+}
 
 export default Networking;

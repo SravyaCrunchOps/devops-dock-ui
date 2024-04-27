@@ -51,7 +51,7 @@
 
 /* timer */
 
-.nav-pills .nav-link.active {
+.timer-pill.nav-pills .nav-link.active {
     font-weight: 700;
     background-color: rgba(0, 0, 0, 0.2) !important;
 }

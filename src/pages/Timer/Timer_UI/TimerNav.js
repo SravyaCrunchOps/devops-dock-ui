@@ -35,7 +35,7 @@ const TimerNav = () => {
     }
 
     return (
-        <Nav variant='pills' className='pill justify-content-around align-items-center' id='timer-nav' defaultActiveKey={1} onSelect={handleSelect}>
+        <Nav variant='pills' className='timer-pill  pill justify-content-around align-items-center' id='timer-nav' defaultActiveKey={1} onSelect={handleSelect}>
             <Nav.Item>
                 <Nav.Link eventKey='1' className='text-white rounded-pill py-1 px-5'>
                     Timer

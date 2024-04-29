@@ -25,7 +25,7 @@ const IPv4Content = () => {
                 <span className="bg-secondary-subtle text-danger p-1">( 196.168.1 )</span> are the network address, and the remaining 8 bits are available for host addresses.
                 With CIDR, we can create Variable Length Subnet Masks(VLSM), leading to less wastage of IP addresses.
             </p>
-            <h3 id='2' className="cidr-title">CIDR calculation:</h3>
+            <h3 id='2' className="cidr-title">CIDR calculation</h3>
             <p>
                 To calculate CIDR network to IP range:
                 <ol>

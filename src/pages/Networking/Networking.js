@@ -9,32 +9,25 @@ const networkItems = [
 ];
 
 
-function Networking() {
-
-  const [isActive, setIsActive] = useState(false);
-
-  const handleActiveState = (id) => {
-    setIsActive(id)
-  }
-
-
+const Networking = ()  => {
   return (
     <main className='container-fluid p-0 m-0 main-container'>
-      <div className='container pt-5 cidr'>
-        <ul className="network nav justify-content-evenly rounded rounded-5 mb-3">
-          {networkItems.map(item => {
-            <li className="nav-item" key={item.id}>
-              <Link className={isActive === item.id ? 'nav-link nav-active' : 'nav-link'} to={`/networking/${item.href}`} onClick={() => handleActiveState(item.id)}>
-                {item.name}
-              </Link>
-          </li>
-          })}
-        </ul>
-        
-        <Outlet />
+      <div className='w-75 mx-auto d-flex pt-5 cidr'>
+        <div className='me-3'>
+          <Outlet />
+        </div>
+
+        <div className='sidebar w-75 p-3 rounded-2' style={{height: '10em'}}>
+          <h4>Other network tools</h4>
+          <div className='list-group list-group-flush'>
+            {networkItems.map(item => (
+                <Link className='list-group-item' key={item.id} to={`/networking/${item.href}`}>{item.name}</Link>
+            ))}
+          </div>
+        </div>
       </div>
     </main>
   )
 }
 
-export default Networking;
+export default Networking

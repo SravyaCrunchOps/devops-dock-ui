@@ -52,3 +52,7 @@ header nav {
     cursor: pointer;
     background-color: #DDE6ED !important;
 }
+
+.h-dropdown:hover .dropdown-menu {
+    display: block;
+}

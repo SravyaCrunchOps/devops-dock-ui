@@ -17,7 +17,7 @@
   word-spacing: 2px;
 }
 
-.cidr-title, .cidr-subtitle, .title {
+.cidr-title, .cidr-subtitle, .title, .toc-title {
   font-family: 'Roboto', sans-serif;
   color: #27374D;
 }
@@ -48,6 +48,24 @@
 .table th {
   background-color: #f0f5f9;
   color: #586b76;
+}
+
+/* sidebar */
+.list-group-item:hover {
+  background-color: #27374D;
+  color: white;
+  font-weight: 600;
+}
+
+.list-group-item::before {
+  content: "\F586";
+  margin-right: 6px;
+}
+
+.sidebar h4 {
+  color: #27374D;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
 }
 
 @media screen and (min-width: 668px) {

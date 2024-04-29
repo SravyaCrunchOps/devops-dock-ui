@@ -12,7 +12,7 @@ const Ipv6 = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:5001/cidr/calculate-cidr', {
+        await fetch('http://localhost:5001/cidr/ipv6', {
             method: 'POST',
             body: JSON.stringify({ cidr: ipAddress }),
             headers: {
@@ -34,7 +34,7 @@ const Ipv6 = () => {
 
     return (
         <>
-            <h1 className='text-center font-bolder mb-3 title'>CIDR Calculator</h1>
+            <h1 className='text-center font-bolder mb-3 title'>IPv6 CIDR Calculator</h1>
             <form onSubmit={handleSubmit}>
                 <div className='input-group mb-3'>
                     <input

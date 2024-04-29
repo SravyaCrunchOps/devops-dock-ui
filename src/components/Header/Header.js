@@ -27,8 +27,8 @@ function Header({ user }) {
               <li className="nav-item me-lg-4 mb-1 mb-lg-0">
                 <Link className="nav-link" to="/">Home</Link>
               </li>
-              <li className="nav-item me-lg-4 mb-1 mb-lg-0 dropdown">
-                <Link className="nav-link dropdown-toggle" to="/networking" role='button' data-bs-toggle='dropdown' aria-expanded='false' >
+              <li className="nav-item me-lg-4 mb-1 mb-lg-0 h-dropdown">
+                <Link className="nav-link h-dropdown-toggle" to="/networking" data-bs-toggle='h-dropdown' aria-expanded="false">
                   Network Calculator
                 </Link>
                 <ul className='dropdown-menu'>
@@ -36,8 +36,8 @@ function Header({ user }) {
                   <li><Link to='/networking/ipv6' className='dropdown-item'>IPv6</Link></li>
                 </ul>
               </li>
-              <li className="nav-item me-lg-4 mb-1 mb-lg-0 dropdown">
-                <Link className="nav-link" to="/converters" role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              <li className="nav-item me-lg-4 mb-1 mb-lg-0 h-dropdown">
+                <Link className="nav-link" to="/converters" role='button' data-bs-toggle='h-dropdown' aria-expanded='false'>
                   Converters
                 </Link>
                 <ul className='dropdown-menu'>

@@ -4,7 +4,6 @@ import IPv4Content from './IPv4Content';
 import CIDRTable from '../CIDRTable';
 import SidebarTOC from '../SidebarTOC';
 
-
 const Ipv4 = () => {
     const [ipAddress, setIpAddress] = useState('');
     const [apiResponse, setApiResponse] = useState(null);
@@ -12,7 +11,7 @@ const Ipv4 = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:5001/cidr/calculate-cidr', {
+        await fetch('http://localhost:5001/cidr/ipv4', {
             method: 'POST',
             body: JSON.stringify({ cidr: ipAddress }),
             headers: {
@@ -34,7 +33,7 @@ const Ipv4 = () => {
 
     return (
         <>
-            <h1 className='text-center font-bolder mb-3 title'>CIDR Calculator</h1>
+            <h1 className='text-center font-bold mb-3 title'>IPv4 CIDR Calculator</h1>
             <form onSubmit={handleSubmit}>
                 <div className='input-group mb-3'>
                     <input

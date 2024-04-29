@@ -6,7 +6,7 @@ function SidebarTOC() {
 
     useEffect(() => {
         const h3 = document.querySelectorAll('h3')
-        console.log(h3)
+        // console.log(h3)
         const h5 = document.querySelectorAll('h5')
     
         const newTitles = Array.from(h3).map((ele, index) => {
@@ -18,7 +18,7 @@ function SidebarTOC() {
         setTitle(newTitles);
 
         const pnode = Array.from(h5).map(t => console.log(t.parentElement))
-        console.log(pnode)
+        // console.log(pnode)
         
         const newSubTitles = Array.from(h5).map((ele, index) => {
             return {
@@ -29,18 +29,18 @@ function SidebarTOC() {
         setSubTitle(newSubTitles);
 
     },[])
-    // console.log(subTitle)
 
     return (  
-        <div>
+        <div className='bg-white p-3'>
+            <h5 className='toc-title fw-bold'>Table of Contents</h5>
             <nav>
-                <ul>
+                <ol>
                     {title.map(t => (
-                        <a href={`#${t.id}`} key={t.id}>
-                            <li>{t.content}</li>
+                        <a href={`#${t.id}`} key={t.id} className='text-decoration-none'>
+                            <li className='mb-2'>{t.content}</li>
                         </a>
                     ))}
-                </ul>
+                </ol>
             </nav>
         </div>
     );
